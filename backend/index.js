@@ -2,10 +2,9 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 
-const usersRoutes = require('./routes/users');
-
 app.use(express.json());
-app.use('/users', usersRoutes);
+app.use('/users', require('./routes/users'));
+app.use('/settings', require('./routes/settings'));
 
 app.use((err, req, res, next) => {
     console.error(err.stack);

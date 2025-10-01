@@ -1,4 +1,4 @@
-const supabase = require('../database/supabaseAnon');
+const supabase = require('../database/supabaseAuth');
 
 (async () => {
     const { data, error } = await supabase.auth.signInWithPassword({
