@@ -1,4 +1,4 @@
-const supabase = require('../database');
+const supabase = require('../database/supabaseAdmin');
 
 exports.createUser = async (req, res, next) => {
     try {
