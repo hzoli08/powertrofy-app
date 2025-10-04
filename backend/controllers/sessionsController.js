@@ -31,12 +31,12 @@ exports.saveSession = async (req, res, next) => {
 
 exports.getSessions = async (req, res, next) => {
     try {
-        const { template } = req.body;
+        const { template_id } = req.params;
 
         const { data: sessions, error: sessionsError } = await supabase
             .from('sessions')
             .select('*')
-            .eq('template_id', template)
+            .eq('template_id', template_id)
         if (sessionsError) return next(sessionsError);
 
         const { data: sets, error: setsError } = await supabase

@@ -7,6 +7,7 @@ app.use('/users', require('./routes/users'));
 app.use('/settings', require('./routes/settings'));
 app.use('/weights', require('./routes/weights'));
 app.use('/templates', require('./routes/templates'));
+app.use('/sessions', require('./routes/sessions'));
 
 app.use((err, req, res, next) => {
     console.error('Error caught:', err);
