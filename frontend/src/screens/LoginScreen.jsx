@@ -8,7 +8,10 @@ export default function LoginScreen({ navigation }) {
     const handleLogin = async () => {
         const { data, error } = await supabase.auth.signInWithOtp({ 
             email,
-            options: { shouldCreateUser: true }
+            options: {
+                emailRedirectTo: undefined,
+                shouldCreateUser: true,
+            }
         });
         if (error) alert(error.message);
         else navigation.navigate('Verify', { email });
