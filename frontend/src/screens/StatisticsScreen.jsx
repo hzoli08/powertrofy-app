@@ -1,9 +1,9 @@
 import { View, Text } from 'react-native';
 
-export default function WorkoutsScreen() {
+export default function StatisticsScreen() {
     return (
         <View>
-            <Text>Workouts Placeholder</Text>
+            <Text>Statistics Placeholder</Text>
         </View>
     );
 }
