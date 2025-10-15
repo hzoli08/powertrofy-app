@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { useState } from 'react';
+import { View, Text, TextInput } from 'react-native';
+import PrimaryButton from '../components/PrimaryButton';
+import Input from '../components/Input';
+import Title from '../components/Title';
 import { supabase } from '../lib/supabase';
 
 export default function LoginScreen({ navigation }) {
@@ -15,15 +18,11 @@ export default function LoginScreen({ navigation }) {
     };
 
     return (
-        <View style={{ padding: 20 }}>
+        <View style={{ backgroundColor: '#232323', height: '100%' }}>
+            <Title highline='Welcome back' mainline='Among hard lifters' />
             <Text>Enter your email to login</Text>
-            <TextInput
-                value={email}
-                onChangeText={setEmail}
-                placeholder='Email'
-                style={{ borderWidth: 1, padding: 10, marginVertical: 10 }}
-            />
-            <Button title='Send Code' onPress={handleLogin} />
+            <Input placeholder='Email' value={email} setValue={setEmail} type='email' />
+            <PrimaryButton title='Send Code' onPress={handleLogin} />
             <Text onPress={() => navigation.navigate('Signup')} style={{ marginTop: 10, color: 'blue' }}>
                 Don't have an account? Sign up
             </Text>

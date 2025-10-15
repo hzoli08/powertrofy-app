@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { useState } from 'react';
+import { View, Text } from 'react-native';
+import PrimaryButton from '../components/PrimaryButton';
+import Input from '../components/Input';
+import Title from '../components/Title';
 import { supabase } from '../lib/supabase';
 
 export default function SignupScreen({ navigation }) {
     const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
 
     const handleSignup = async () => {
         const { data, error } = await supabase.auth.signInWithOtp({ 
@@ -15,15 +19,11 @@ export default function SignupScreen({ navigation }) {
     };
 
     return (
-        <View style={{ padding: 20 }}>
-            <Text>Enter your email to sign up</Text>
-            <TextInput
-                value={email}
-                onChangeText={setEmail}
-                placeholder='Email'
-                style={{ borderWidth: 1, padding: 10, marginVertical: 10 }}
-            />
-            <Button title='Send Code' onPress={handleSignup} />
+        <View style={{ backgroundColor: '#232323', height: '100%' }}>
+            <Title highline='Track your progress...' mainline='Like a warrior' />
+            <Input placeholder='Enter your name' value={name} setValue={setName} type='text' />
+            <Input placeholder='Enter your email' value={email} setValue={setEmail} type='email' />
+            <PrimaryButton title='Send Code' onPress={handleSignup} />
             <Text onPress={() => navigation.navigate('Login')} style={{ marginTop: 10, color: 'blue' }}>
                 Already have an account? Log in
             </Text>
