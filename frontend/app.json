@@ -24,6 +24,49 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Roboto_400Regular.ttf"
+          ],
+          "android": {
+            "fonts": [
+              {
+                "fontFamily": "Oswald",
+                "fontDefinitions": [
+                  {
+                    "path": "./assets/fonts/Oswald_400Regular.ttf",
+                    "weight": 600
+                  },
+                  {
+                    "path": "./assets/fonts/Oswald_600SemiBold.ttf",
+                    "weight": 400
+                  }
+                ]
+              },
+              {
+                "fontFamily": "Roboto",
+                "fontDefinitions": [
+                  {
+                    "path": "./assets/fonts/Roboto_300Light.ttf",
+                    "weight": 300
+                  },
+                  {
+                    "path": "./assets/fonts/Roboto_400Regular.ttf",
+                    "weight": 400
+                  }
+                ]
+              }
+            ]
+          },
+          "ios": {
+            "fonts": "./assets/fonts/Roboto_400Regular.ttf"
+          }
+        }
+      ]
+    ]
   }
 }
