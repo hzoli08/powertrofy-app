@@ -1,12 +1,18 @@
-import { Button } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
+import { colors, size, fonts, box } from '../theme';
 
-export default function PrimaryButton({ title, onPress }) {
+export default function PrimaryButton({ label, onPress }) {
     return (
-        <Button 
+        <TouchableOpacity 
             onPress={onPress}
-            title={title}
-            className=''
-            style={{ backgroundColor: 'black' }}
-        />
+            style={{ 
+                width: box.full, 
+                paddingVertical: size.md, 
+                backgroundColor: colors.accent, 
+                borderRadius: size.sm, 
+                alignItems: 'center', 
+                justifyContent: 'center'
+            }}
+        ><Text style={[fonts.body, { fontWeight: 'bold' }]}>{label}</Text></TouchableOpacity>
     );
 }

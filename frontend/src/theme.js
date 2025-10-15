@@ -2,7 +2,7 @@ export const colors = {
     main_bg: '#232323',
     sec_bg: '#373737',
     sec_accent: '#AC2500',
-    accent: 'C62B00',
+    accent: '#C62B00',
     sec_font: '#C4C4C4',
     main_font: '#E2E2E2',
 };

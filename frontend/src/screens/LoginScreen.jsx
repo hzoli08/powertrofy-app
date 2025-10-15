@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { View } from 'react-native';
 import PrimaryButton from '../components/PrimaryButton';
 import Input from '../components/Input';
 import Title from '../components/Title';
+import Link from '../components/Link';
 import { supabase } from '../lib/supabase';
+import { colors, size } from '../theme';
 
 export default function LoginScreen({ navigation }) {
     const [email, setEmail] = useState('');
@@ -18,14 +20,11 @@ export default function LoginScreen({ navigation }) {
     };
 
     return (
-        <View style={{ backgroundColor: '#232323', height: '100%' }}>
-            <Title highline='Welcome back' mainline='Among hard lifters' />
-            <Text>Enter your email to login</Text>
-            <Input placeholder='Email' value={email} setValue={setEmail} type='email' />
-            <PrimaryButton title='Send Code' onPress={handleLogin} />
-            <Text onPress={() => navigation.navigate('Signup')} style={{ marginTop: 10, color: 'blue' }}>
-                Don't have an account? Sign up
-            </Text>
+        <View style={{ flex: 1, justifyContent: 'flex-start', gap: size.lg, backgroundColor: colors.main_bg, paddingHorizontal: size.lg }}>
+            <Title highline='Welcome back' mainline='To POWERTROFY' />
+            <Input label='Enter email to log in' value={email} setValue={setEmail} type='email' />
+            <Link label='Has no account? Sign up' onPress={() => navigation.navigate('Signup')} />
+            <PrimaryButton label='Send Me the Code' onPress={handleLogin} />
         </View>
     );
 }

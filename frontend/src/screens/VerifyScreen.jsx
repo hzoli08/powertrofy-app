@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
+import PrimaryButton from '../components/PrimaryButton';
+import Input from '../components/Input';
+import Title from '../components/Title';
+import { colors, size, fonts, box } from '../theme';
 import { supabase } from '../lib/supabase';
 
 export default function VerifyScreen({ route, navigation }) {
@@ -24,16 +28,10 @@ export default function VerifyScreen({ route, navigation }) {
     };
 
     return (
-        <View style={{ padding: 20 }}>
-            <Text>Enter the 6-digit code sent to {email}</Text>
-            <TextInput 
-                value={code}
-                onChangeText={setCode}
-                placeholder='Enter code'
-                keyboardType='number-pad'
-                style={{ borderWidth: 1, padding: 10, marginVertical: 10 }}
-            />
-            <Button title='Verify' onPress={handleVerify} />
+        <View style={{ flex: 1, justifyContent: 'flex-start', gap: size.lg, backgroundColor: colors.main_bg, paddingHorizontal: size.lg }}>
+            <Title highline='Enter the code' mainline='We sent in Email' />
+            <Input label='Enter code' value={code} setValue={setCode} type='code' />
+            <PrimaryButton label='Verify Me' onPress={handleVerify} />
         </View>
     );
 }

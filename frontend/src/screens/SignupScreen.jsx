@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import PrimaryButton from '../components/PrimaryButton';
 import Input from '../components/Input';
 import Title from '../components/Title';
+import Link from '../components/Link';
 import { supabase } from '../lib/supabase';
+import { colors, size, box } from '../theme';
 
 export default function SignupScreen({ navigation }) {
     const [email, setEmail] = useState('');
@@ -19,14 +21,14 @@ export default function SignupScreen({ navigation }) {
     };
 
     return (
-        <View style={{ backgroundColor: '#232323', height: '100%' }}>
-            <Title highline='Track your progress...' mainline='Like a warrior' />
-            <Input placeholder='Enter your name' value={name} setValue={setName} type='text' />
-            <Input placeholder='Enter your email' value={email} setValue={setEmail} type='email' />
-            <PrimaryButton title='Send Code' onPress={handleSignup} />
-            <Text onPress={() => navigation.navigate('Login')} style={{ marginTop: 10, color: 'blue' }}>
-                Already have an account? Log in
-            </Text>
+        <View style={{ flex: 1, justifyContent: 'flex-start', gap: size.lg, backgroundColor: colors.main_bg, paddingHorizontal: size.lg }}>
+            <Title highline='Track your progress...' mainline='Like a powerbuilder' />
+            <View style={{ gap: size.xs }}>
+                <Input label='Enter your name' value={name} setValue={setName} type='text' />
+                <Input label='Enter your email' value={email} setValue={setEmail} type='email' />
+            </View>
+            <Link label='Already have an account? Log in' onPress={() => navigation.navigate('Login')} />
+            <PrimaryButton label='Send Me the Code' onPress={handleSignup} />
         </View>
     );
 }

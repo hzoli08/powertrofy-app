@@ -1,28 +1,31 @@
 import { useState } from 'react';
 import { View, Text, TextInput } from 'react-native';
+import { colors, size, fonts, box } from '../theme';
 
 export default function Input({ label, value, setValue, type }) {
-    if (type == 'text' || type == 'email') {
-        return (
-            <View className=''>
-                <Text className=''>{label}</Text>
+    const [isActive, setIsActive] = useState(false);
+
+    let keyboard = '';
+
+    switch (type) {
+        case 'text': keyboard = 'default'; break;
+        case 'email': keyboard = 'email-address'; break;
+        case 'code': keyboard = 'number-pad'; break;
+    }
+
+    return (
+            <View>
+                <Text style={[fonts.body, { transform: 'translateY(10%)', zIndex: 100, color: (isActive ? colors.accent : colors.sec_font), textAlign: 'center', width: '40%', marginLeft: size.md, backgroundColor: colors.main_bg }]}>{label}</Text>
                 <TextInput
-                    className=''
+                    style={{ width: box.full, padding: size.md, borderRadius: size.sm, borderWidth: 2, borderColor: (isActive ? colors.accent : colors.sec_font), color: colors.main_font, outlineWidth: (isActive ? 3 : 0), outlineColor: 'rgba(198, 43, 0, 0.25)' }}
                     value={value}
                     onChangeText={setValue}
                     numberOfLines={1}
-                    keyboardType={(type == 'text' ? 'default' : 'email-address')}
+                    onFocus={() => setIsActive(true)}
+                    onBlur={() => setIsActive(false)}
+                    keyboardType={keyboard}
+                    maxLength={(keyboard == 'number-pad' ? 6 : 32)}
                 />
             </View>
-        );
-    } else if (type == 'code') {
-        return (
-            <View>
-                <Text>{label}</Text>
-                <View>
-                    <TextInput maxLength={1} keyboardType='number-pad' />
-                </View>
-            </View>
-        );
-    }
+    );
 }
