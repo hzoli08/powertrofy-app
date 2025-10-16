@@ -15,9 +15,9 @@ export default function Input({ label, value, setValue, type }) {
 
     return (
             <View>
-                <Text style={[fonts.body, { transform: 'translateY(10%)', zIndex: 100, color: (isActive ? colors.accent : colors.sec_font), textAlign: 'center', width: '40%', marginLeft: size.md, backgroundColor: colors.main_bg }]}>{label}</Text>
+                <Text style={[fonts.body, { transform: 'translateY(10%)', zIndex: 100, color: (isActive ? colors.accent : colors.sec_font), textAlign: 'center', width: (type == 'code' ? '30%' : '40%'), marginLeft: size.md, backgroundColor: colors.main_bg }]}>{label}</Text>
                 <TextInput
-                    style={{ width: box.full, padding: size.md, borderRadius: size.sm, borderWidth: 2, borderColor: (isActive ? colors.accent : colors.sec_font), color: colors.main_font, outlineWidth: (isActive ? 3 : 0), outlineColor: 'rgba(198, 43, 0, 0.25)' }}
+                    style={{ width: box.full, padding: size.md, borderRadius: size.sm, borderWidth: 2, borderColor: (isActive ? colors.accent : colors.sec_font), color: colors.main_font, outlineWidth: (isActive ? 3 : 0), outlineColor: 'rgba(198, 43, 0, 0.25)', textAlign: (type == 'code' ? 'center' : 'left'), letterSpacing: (type == 'code' ? 15 : 1) }}
                     value={value}
                     onChangeText={setValue}
                     numberOfLines={1}

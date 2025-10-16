@@ -3,9 +3,9 @@ import { fonts, size } from '../theme';
 
 export default function Title({ highline, mainline }) {
     return (
-        <View style={{ flexDirection: 'column', gap: size.xs, marginTop: size.xxl }}>
+        <View style={{ flexDirection: 'column', marginTop: size.xxl }}>
             <Text style={fonts.subheading}>{highline}</Text>
-            <Text style={fonts.heading}>{mainline}</Text>
+            <Text style={[fonts.heading, { textTransform: 'uppercase' }]}>{mainline}</Text>
         </View>
     );
 }

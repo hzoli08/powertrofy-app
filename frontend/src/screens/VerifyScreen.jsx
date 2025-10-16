@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View } from 'react-native';
 import PrimaryButton from '../components/PrimaryButton';
 import Input from '../components/Input';
 import Title from '../components/Title';
-import { colors, size, fonts, box } from '../theme';
+import { colors, size } from '../theme';
 import { supabase } from '../lib/supabase';
 
 export default function VerifyScreen({ route, navigation }) {
@@ -11,19 +11,31 @@ export default function VerifyScreen({ route, navigation }) {
     const [code, setCode] = useState('');
 
     const handleVerify = async () => {
-        const { data, error } = await supabase.auth.verifyOtp({
+        const { data: codeData, error: codeError } = await supabase.auth.verifyOtp({
             email,
             token: code,
             type: 'email',
         });
         
-        if (error) {
-            console.error(error);
+        if (codeError) {
+            console.error(codeError);
             alert('Invalid code');
             return;
         }
 
-        console.log('Verified user:', data);
+        if (signup) {
+            const { data: usernameData, error: usernameError } = await supabase.auth.updateUser({
+                data: { display_name: username }
+            });
+
+            if (usernameError) {
+                console.error(usernameError);
+                alert('Issue with saving username');
+                return;
+            }
+        }
+
+        console.log('Verified user:', codeData);
         navigation.navigate('Dashboard');
     };
 

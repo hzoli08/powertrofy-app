@@ -16,12 +16,12 @@ export default function LoginScreen({ navigation }) {
             options: { shouldCreateUser: false, emailRedirectTo: undefined }
         });
         if (error) alert(error.message);
-        else navigation.navigate('Verify', { email });
+        else navigation.navigate('Verify', { email, signup: false });
     };
 
     return (
         <View style={{ flex: 1, justifyContent: 'flex-start', gap: size.lg, backgroundColor: colors.main_bg, paddingHorizontal: size.lg }}>
-            <Title highline='Welcome back' mainline='To POWERTROFY' />
+            <Title highline='Welcome back' mainline='To the POWERTROFY App' />
             <Input label='Enter email to log in' value={email} setValue={setEmail} type='email' />
             <Link label='Has no account? Sign up' onPress={() => navigation.navigate('Signup')} />
             <PrimaryButton label='Send Me the Code' onPress={handleLogin} />

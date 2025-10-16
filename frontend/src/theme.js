@@ -18,25 +18,25 @@ export const size = {
 
 export const fonts = {
     heading: {
-        fontFamily: 'Oswald',
+        fontFamily: 'Oswald_600SemiBold',
         fontSize: size.xl,
         fontWeight: 600,
         color: colors.main_font,
     },
     subheading: {
-        fontFamily: 'Oswald',
+        fontFamily: 'Oswald_400Regular',
         fontSize: size.lg,
         fontWeight: 400,
         color: colors.sec_font,
     },
     body: {
-        fontFamily: 'Roboto',
+        fontFamily: 'Roboto_400Regular',
         fontSize: size.md,
         fontWeight: 400,
         color: colors.main_font,
     },
     tip: {
-        fontFamily: 'Roboto',
+        fontFamily: 'Roboto_300Light',
         fontSize: size.sm,
         fontWeight: 300,
         color: colors.sec_font,

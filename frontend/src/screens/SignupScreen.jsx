@@ -5,11 +5,11 @@ import Input from '../components/Input';
 import Title from '../components/Title';
 import Link from '../components/Link';
 import { supabase } from '../lib/supabase';
-import { colors, size, box } from '../theme';
+import { colors, size } from '../theme';
 
 export default function SignupScreen({ navigation }) {
     const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
+    const [username, setUsername] = useState('');
 
     const handleSignup = async () => {
         const { data, error } = await supabase.auth.signInWithOtp({ 
@@ -17,14 +17,14 @@ export default function SignupScreen({ navigation }) {
             options: { shouldCreateUser: true, emailRedirectTo: undefined }
         });
         if (error) alert(error.message);
-        else navigation.navigate('Verify', { email });
+        else navigation.navigate('Verify', { email, username, signup: true });
     };
 
     return (
         <View style={{ flex: 1, justifyContent: 'flex-start', gap: size.lg, backgroundColor: colors.main_bg, paddingHorizontal: size.lg }}>
-            <Title highline='Track your progress...' mainline='Like a powerbuilder' />
+            <Title highline='Track your progress...' mainline='Like a top athlete' />
             <View style={{ gap: size.xs }}>
-                <Input label='Enter your name' value={name} setValue={setName} type='text' />
+                <Input label='Enter your name' value={username} setValue={setUsername} type='text' />
                 <Input label='Enter your email' value={email} setValue={setEmail} type='email' />
             </View>
             <Link label='Already have an account? Log in' onPress={() => navigation.navigate('Login')} />
