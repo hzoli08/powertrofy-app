@@ -7,7 +7,7 @@ import { colors, size } from '../theme';
 import { supabase } from '../lib/supabase';
 
 export default function VerifyScreen({ route, navigation }) {
-    const { email } = route.params;
+    const { email, signup, username } = route.params;
     const [code, setCode] = useState('');
 
     const handleVerify = async () => {
@@ -23,19 +23,23 @@ export default function VerifyScreen({ route, navigation }) {
             return;
         }
 
-        if (signup) {
-            const { data: usernameData, error: usernameError } = await supabase.auth.updateUser({
-                data: { display_name: username }
-            });
+        const { data: sessionData } = await supabase.auth.getSession();
+        if (sessionData?.session) {
+            if (signup) {
+                const { error: usernameError } = await supabase.auth.updateUser({
+                    data: { display_name: username }
+                });
 
-            if (usernameError) {
-                console.error(usernameError);
-                alert('Issue with saving username');
-                return;
+                if (usernameError) {
+                    console.error(usernameError);
+                    alert('Issue with saving username');
+                    return;
+                }
             }
+        } else {
+            console.warn('No session found yet, retry update later');
         }
 
-        console.log('Verified user:', codeData);
         navigation.navigate('Dashboard');
     };
 
