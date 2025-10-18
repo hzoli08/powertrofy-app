@@ -5,6 +5,7 @@ import Dashboard from '../screens/Dashboard';
 import WorkoutsScreen from '../screens/WorkoutsScreen';
 import StatisticsScreen from '../screens/StatisticsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import { colors, size, fonts } from '../theme';
 
 const Tab = createBottomTabNavigator();
 
@@ -21,9 +22,9 @@ export default function MainTabs() {
                     return <Ionicons name={icon} size={size} color={color} />;
                 },
                 headerShown: false,
-                tabBarActiveTintCOlor: '#ff6b00',
-                tabBarInactiveTintColor: 'gray',
-                tabBarStyle: { backgroundColor: '#111', borderTopWidth: 0 },
+                tabBarActiveTintColor: colors.main_font,
+                tabBarInactiveTintColor: colors.sec_font,
+                tabBarStyle: { backgroundColor: colors.accent, borderTopWidth: 0, height: 128, paddingTop: size.md },
             })}
         >
             <Tab.Screen name='Dashboard' component={Dashboard} />

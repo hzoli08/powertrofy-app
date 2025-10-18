@@ -7,7 +7,7 @@ import { colors, size } from '../theme';
 import { supabase } from '../lib/supabase';
 
 export default function VerifyScreen({ route, navigation }) {
-    const { email, signup, username } = route.params;
+    const { email, signup, username: passedUsername } = route.params;
     const [code, setCode] = useState('');
 
     const handleVerify = async () => {
@@ -23,24 +23,34 @@ export default function VerifyScreen({ route, navigation }) {
             return;
         }
 
-        const { data: sessionData } = await supabase.auth.getSession();
-        if (sessionData?.session) {
-            if (signup) {
-                const { error: usernameError } = await supabase.auth.updateUser({
-                    data: { display_name: username }
-                });
+        let username = passedUsername;
 
-                if (usernameError) {
-                    console.error(usernameError);
-                    alert('Issue with saving username');
-                    return;
-                }
+        await new Promise((res) => setTimeout(res, 1000));
+
+        if (signup) {
+            const { error: usernameError } = await supabase.auth.updateUser({
+                data: { display_name: username },
+            });
+            if (usernameError) {
+                console.error(usernameError);
+                alert('Issue saving username');
+                return;
             }
-        } else {
-            console.warn('No session found yet, retry update later');
         }
 
-        navigation.navigate('Dashboard');
+        // const { data: refreshedUser, error: refreshError } = await supabase.auth.getUser();
+        // if (refreshError) {
+        //     console.error(refreshError);
+        //     alert('Could not fetch user info');
+        //     return;
+        // }
+
+        // username = refreshedUser?.user?.user_metadata?.display_name || 'Gymbro';
+
+        // navigation.navigate('MainTabs', { 
+        //     screen: 'Dashboard',
+        //     params: { username } 
+        // });
     };
 
     return (

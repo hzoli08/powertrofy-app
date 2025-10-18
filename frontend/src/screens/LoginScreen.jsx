@@ -15,7 +15,7 @@ export default function LoginScreen({ navigation }) {
             email,
             options: { shouldCreateUser: false, emailRedirectTo: undefined }
         });
-        if (error) alert(error.message);
+        if (error) alert(error.message);        
         else navigation.navigate('Verify', { email, signup: false });
     };
 
