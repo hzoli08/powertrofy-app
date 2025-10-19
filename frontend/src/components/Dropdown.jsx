@@ -12,11 +12,15 @@ export default function Dropdown({ options, original, position, time, setTime })
         }
     }, [original]);
 
-    const optionItems = options.map(option => 
-        <TouchableOpacity style={{ padding: size.md, width: box.full, alignItems: 'center' }} onPress={() => {setOption(option); setTime(option); setShowOptions(false)}}>
+    const optionItems = options.map(option => (
+        <TouchableOpacity key={option} style={{ padding: size.md, width: box.full, alignItems: 'center' }} onPress={() => {
+            setOption(option);
+            if (setTime) setTime(option);
+            setShowOptions(false);
+        }}>
             <Text style={fonts.body}>{option}</Text>
         </TouchableOpacity>
-    );
+    ));
     
     return (
         <>
